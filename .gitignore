@@ -1,4 +1,3 @@
-# elm-package generated files
+.idea/
+scoreplusminus.iml
 elm-stuff/
-# elm-repl generated files
-repl-temp-*

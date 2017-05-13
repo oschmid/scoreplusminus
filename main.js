@@ -8423,7 +8423,7 @@ var _user$project$Main$view = function (model) {
 							_elm_lang$html$Html$button,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('col-xs-3'),
+								_0: _elm_lang$html$Html_Attributes$class('col-xs-3 btn btn-default'),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html_Events$onClick(
@@ -8442,7 +8442,7 @@ var _user$project$Main$view = function (model) {
 								_elm_lang$html$Html$button,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('col-xs-2'),
+									_0: _elm_lang$html$Html_Attributes$class('col-xs-2 btn btn-default'),
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$html$Html_Events$onClick(
@@ -8461,7 +8461,7 @@ var _user$project$Main$view = function (model) {
 									_elm_lang$html$Html$button,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('col-xs-2'),
+										_0: _elm_lang$html$Html_Attributes$class('col-xs-2 btn btn-default'),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Reset),
@@ -8479,7 +8479,7 @@ var _user$project$Main$view = function (model) {
 										_elm_lang$html$Html$button,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('col-xs-2'),
+											_0: _elm_lang$html$Html_Attributes$class('col-xs-2 btn btn-default'),
 											_1: {
 												ctor: '::',
 												_0: _elm_lang$html$Html_Events$onClick(
@@ -8498,7 +8498,7 @@ var _user$project$Main$view = function (model) {
 											_elm_lang$html$Html$button,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('col-xs-3'),
+												_0: _elm_lang$html$Html_Attributes$class('col-xs-3 btn btn-default'),
 												_1: {
 													ctor: '::',
 													_0: _elm_lang$html$Html_Events$onClick(

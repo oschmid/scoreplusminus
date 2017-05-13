@@ -1,7 +1,7 @@
 module Main exposing (..)
 
-import Html exposing (beginnerProgram, div, button, h1, h2, text)
-import Html.Attributes exposing (class, style)
+import Html exposing (beginnerProgram, div, button, h1, h2, span, text)
+import Html.Attributes exposing (class, style, attribute, title)
 import Html.Events exposing (onClick)
 
 
@@ -56,23 +56,38 @@ view model =
     let
         plusMinusColor =
             if model.plusMinus > 0 then
-                "green"
+                [ style [ ( "color", "green" ) ] ]
             else if model.plusMinus < 0 then
-                "red"
+                [ style [ ( "color", "red" ) ] ]
             else
-                "black"
+                []
     in
         div [ class "container-fluid" ]
             [ div [ class "row" ]
-                [ div [ class "col-xs-4" ] [ h1 [ style [ ( "text-align", "center" ) ] ] [ text <| toString model.us ] ]
-                , div [ class "col-xs-4 align-bottom" ] [ h2 [ style [ ( "text-align", "center" ), ( "color", plusMinusColor ) ] ] [ text <| toString model.plusMinus ] ]
-                , div [ class "col-xs-4" ] [ h1 [ style [ ( "text-align", "center" ) ] ] [ text <| toString model.them ] ]
+                [ div [ class "col-xs-4" ] [ h1 [] [ text <| toString model.us ] ]
+                , div [ class "col-xs-4" ] [ h2 plusMinusColor [ text <| toString model.plusMinus ] ]
+                , div [ class "col-xs-4" ] [ h1 [] [ text <| toString model.them ] ]
                 ]
-            , div [ class "row" ]
-                [ button [ class "col-xs-3 btn btn-default", onClick <| IncUs False ] [ text "+" ]
-                , button [ class "col-xs-2 btn btn-default", onClick <| IncUs True ] [ text "+ You" ]
-                , button [ class "col-xs-2 btn btn-default", onClick Reset ] [ text "Reset" ]
-                , button [ class "col-xs-2 btn btn-default", onClick <| IncThem True ] [ text "- You" ]
-                , button [ class "col-xs-3 btn btn-default", onClick <| IncThem False ] [ text "-" ]
+            , div [ class "row container-fluid" ]
+                [ button [ class "btn btn-default", onClick <| IncUs False, ariaLabel "Score without you", title "+" ]
+                    [ span [ class "glyphicon glyphicon-menu-up", ariaHidden ] [] ]
+                , button [ class "btn btn-default", onClick <| IncUs True, ariaLabel "Score with you", title "+ You" ]
+                    [ span [ class "glyphicon glyphicon-triangle-top", ariaHidden ] [] ]
+                , button [ class "btn btn-default", onClick Reset, ariaLabel "Reset", title "Reset" ]
+                    [ span [ class "glyphicon glyphicon-repeat", ariaHidden ] [] ]
+                , button [ class "btn btn-default", onClick <| IncThem True, ariaLabel "Score against you", title "- You" ]
+                    [ span [ class "glyphicon glyphicon-triangle-bottom", ariaHidden ] [] ]
+                , button [ class "btn btn-default", onClick <| IncThem False, ariaLabel "Score against your team", title "-" ]
+                    [ span [ class "glyphicon glyphicon-menu-down" ] [] ]
                 ]
             ]
+
+
+ariaLabel : String -> Html.Attribute msg
+ariaLabel =
+    attribute "aria-label"
+
+
+ariaHidden : Html.Attribute msg
+ariaHidden =
+    attribute "aria-hidden" "true"

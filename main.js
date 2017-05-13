@@ -8260,6 +8260,8 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
+var _user$project$Main$ariaHidden = A2(_elm_lang$html$Html_Attributes$attribute, 'aria-hidden', 'true');
+var _user$project$Main$ariaLabel = _elm_lang$html$Html_Attributes$attribute('aria-label');
 var _user$project$Main$Model = F3(
 	function (a, b, c) {
 		return {us: a, them: b, plusMinus: c};
@@ -8290,7 +8292,25 @@ var _user$project$Main$IncUs = function (a) {
 	return {ctor: 'IncUs', _0: a};
 };
 var _user$project$Main$view = function (model) {
-	var plusMinusColor = (_elm_lang$core$Native_Utils.cmp(model.plusMinus, 0) > 0) ? 'green' : ((_elm_lang$core$Native_Utils.cmp(model.plusMinus, 0) < 0) ? 'red' : 'black');
+	var plusMinusColor = (_elm_lang$core$Native_Utils.cmp(model.plusMinus, 0) > 0) ? {
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$style(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'color', _1: 'green'},
+				_1: {ctor: '[]'}
+			}),
+		_1: {ctor: '[]'}
+	} : ((_elm_lang$core$Native_Utils.cmp(model.plusMinus, 0) < 0) ? {
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$style(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'color', _1: 'red'},
+				_1: {ctor: '[]'}
+			}),
+		_1: {ctor: '[]'}
+	} : {ctor: '[]'});
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -8320,16 +8340,7 @@ var _user$project$Main$view = function (model) {
 							ctor: '::',
 							_0: A2(
 								_elm_lang$html$Html$h1,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$style(
-										{
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
-											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								},
+								{ctor: '[]'},
 								{
 									ctor: '::',
 									_0: _elm_lang$html$Html$text(
@@ -8344,27 +8355,14 @@ var _user$project$Main$view = function (model) {
 							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('col-xs-4 align-bottom'),
+								_0: _elm_lang$html$Html_Attributes$class('col-xs-4'),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
 								_0: A2(
 									_elm_lang$html$Html$h2,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$style(
-											{
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
-												_1: {
-													ctor: '::',
-													_0: {ctor: '_Tuple2', _0: 'color', _1: plusMinusColor},
-													_1: {ctor: '[]'}
-												}
-											}),
-										_1: {ctor: '[]'}
-									},
+									plusMinusColor,
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html$text(
@@ -8386,16 +8384,7 @@ var _user$project$Main$view = function (model) {
 									ctor: '::',
 									_0: A2(
 										_elm_lang$html$Html$h1,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$style(
-												{
-													ctor: '::',
-													_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
-										},
+										{ctor: '[]'},
 										{
 											ctor: '::',
 											_0: _elm_lang$html$Html$text(
@@ -8414,7 +8403,7 @@ var _user$project$Main$view = function (model) {
 					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('row'),
+						_0: _elm_lang$html$Html_Attributes$class('row container-fluid'),
 						_1: {ctor: '[]'}
 					},
 					{
@@ -8423,17 +8412,36 @@ var _user$project$Main$view = function (model) {
 							_elm_lang$html$Html$button,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('col-xs-3 btn btn-default'),
+								_0: _elm_lang$html$Html_Attributes$class('btn btn-default'),
 								_1: {
 									ctor: '::',
 									_0: _elm_lang$html$Html_Events$onClick(
 										_user$project$Main$IncUs(false)),
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: _user$project$Main$ariaLabel('Score without you'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$title('+'),
+											_1: {ctor: '[]'}
+										}
+									}
 								}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('+'),
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-menu-up'),
+										_1: {
+											ctor: '::',
+											_0: _user$project$Main$ariaHidden,
+											_1: {ctor: '[]'}
+										}
+									},
+									{ctor: '[]'}),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -8442,17 +8450,36 @@ var _user$project$Main$view = function (model) {
 								_elm_lang$html$Html$button,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('col-xs-2 btn btn-default'),
+									_0: _elm_lang$html$Html_Attributes$class('btn btn-default'),
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$html$Html_Events$onClick(
 											_user$project$Main$IncUs(true)),
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: _user$project$Main$ariaLabel('Score with you'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$title('+ You'),
+												_1: {ctor: '[]'}
+											}
+										}
 									}
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('+ You'),
+									_0: A2(
+										_elm_lang$html$Html$span,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-triangle-top'),
+											_1: {
+												ctor: '::',
+												_0: _user$project$Main$ariaHidden,
+												_1: {ctor: '[]'}
+											}
+										},
+										{ctor: '[]'}),
 									_1: {ctor: '[]'}
 								}),
 							_1: {
@@ -8461,16 +8488,35 @@ var _user$project$Main$view = function (model) {
 									_elm_lang$html$Html$button,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('col-xs-2 btn btn-default'),
+										_0: _elm_lang$html$Html_Attributes$class('btn btn-default'),
 										_1: {
 											ctor: '::',
 											_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Reset),
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: _user$project$Main$ariaLabel('Reset'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$title('Reset'),
+													_1: {ctor: '[]'}
+												}
+											}
 										}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Reset'),
+										_0: A2(
+											_elm_lang$html$Html$span,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-repeat'),
+												_1: {
+													ctor: '::',
+													_0: _user$project$Main$ariaHidden,
+													_1: {ctor: '[]'}
+												}
+											},
+											{ctor: '[]'}),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
@@ -8479,17 +8525,36 @@ var _user$project$Main$view = function (model) {
 										_elm_lang$html$Html$button,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('col-xs-2 btn btn-default'),
+											_0: _elm_lang$html$Html_Attributes$class('btn btn-default'),
 											_1: {
 												ctor: '::',
 												_0: _elm_lang$html$Html_Events$onClick(
 													_user$project$Main$IncThem(true)),
-												_1: {ctor: '[]'}
+												_1: {
+													ctor: '::',
+													_0: _user$project$Main$ariaLabel('Score against you'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$title('- You'),
+														_1: {ctor: '[]'}
+													}
+												}
 											}
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('- You'),
+											_0: A2(
+												_elm_lang$html$Html$span,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-triangle-bottom'),
+													_1: {
+														ctor: '::',
+														_0: _user$project$Main$ariaHidden,
+														_1: {ctor: '[]'}
+													}
+												},
+												{ctor: '[]'}),
 											_1: {ctor: '[]'}
 										}),
 									_1: {
@@ -8498,17 +8563,32 @@ var _user$project$Main$view = function (model) {
 											_elm_lang$html$Html$button,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('col-xs-3 btn btn-default'),
+												_0: _elm_lang$html$Html_Attributes$class('btn btn-default'),
 												_1: {
 													ctor: '::',
 													_0: _elm_lang$html$Html_Events$onClick(
 														_user$project$Main$IncThem(false)),
-													_1: {ctor: '[]'}
+													_1: {
+														ctor: '::',
+														_0: _user$project$Main$ariaLabel('Score against your team'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$title('-'),
+															_1: {ctor: '[]'}
+														}
+													}
 												}
 											},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text('-'),
+												_0: A2(
+													_elm_lang$html$Html$span,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-menu-down'),
+														_1: {ctor: '[]'}
+													},
+													{ctor: '[]'}),
 												_1: {ctor: '[]'}
 											}),
 										_1: {ctor: '[]'}

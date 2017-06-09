@@ -8271,20 +8271,41 @@ var _user$project$Main$update = F2(
 		var _p0 = msg;
 		switch (_p0.ctor) {
 			case 'IncUs':
-				var plusMinus = _p0._0 ? (model.plusMinus + 1) : model.plusMinus;
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{us: model.us + 1, plusMinus: plusMinus});
+				var head = A2(
+					_elm_lang$core$Maybe$withDefault,
+					A3(_user$project$Main$Model, 0, 0, 0),
+					_elm_lang$core$List$head(model));
+				var plusMinus = _p0._0 ? (head.plusMinus + 1) : head.plusMinus;
+				return {
+					ctor: '::',
+					_0: _elm_lang$core$Native_Utils.update(
+						head,
+						{us: head.us + 1, plusMinus: plusMinus}),
+					_1: model
+				};
 			case 'IncThem':
-				var plusMinus = _p0._0 ? (model.plusMinus - 1) : model.plusMinus;
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{them: model.them + 1, plusMinus: plusMinus});
+				var head = A2(
+					_elm_lang$core$Maybe$withDefault,
+					A3(_user$project$Main$Model, 0, 0, 0),
+					_elm_lang$core$List$head(model));
+				var plusMinus = _p0._0 ? (head.plusMinus - 1) : head.plusMinus;
+				return {
+					ctor: '::',
+					_0: _elm_lang$core$Native_Utils.update(
+						head,
+						{them: head.them + 1, plusMinus: plusMinus}),
+					_1: model
+				};
 			default:
-				return A3(_user$project$Main$Model, 0, 0, 0);
+				var _p1 = model;
+				if (_p1.ctor === '[]') {
+					return {ctor: '[]'};
+				} else {
+					return _p1._1;
+				}
 		}
 	});
-var _user$project$Main$Reset = {ctor: 'Reset'};
+var _user$project$Main$Undo = {ctor: 'Undo'};
 var _user$project$Main$IncThem = function (a) {
 	return {ctor: 'IncThem', _0: a};
 };
@@ -8292,7 +8313,11 @@ var _user$project$Main$IncUs = function (a) {
 	return {ctor: 'IncUs', _0: a};
 };
 var _user$project$Main$view = function (model) {
-	var plusMinusColor = (_elm_lang$core$Native_Utils.cmp(model.plusMinus, 0) > 0) ? {
+	var head = A2(
+		_elm_lang$core$Maybe$withDefault,
+		A3(_user$project$Main$Model, 0, 0, 0),
+		_elm_lang$core$List$head(model));
+	var plusMinusColor = (_elm_lang$core$Native_Utils.cmp(head.plusMinus, 0) > 0) ? {
 		ctor: '::',
 		_0: _elm_lang$html$Html_Attributes$style(
 			{
@@ -8301,7 +8326,7 @@ var _user$project$Main$view = function (model) {
 				_1: {ctor: '[]'}
 			}),
 		_1: {ctor: '[]'}
-	} : ((_elm_lang$core$Native_Utils.cmp(model.plusMinus, 0) < 0) ? {
+	} : ((_elm_lang$core$Native_Utils.cmp(head.plusMinus, 0) < 0) ? {
 		ctor: '::',
 		_0: _elm_lang$html$Html_Attributes$style(
 			{
@@ -8344,7 +8369,7 @@ var _user$project$Main$view = function (model) {
 								{
 									ctor: '::',
 									_0: _elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(model.us)),
+										_elm_lang$core$Basics$toString(head.us)),
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
@@ -8366,7 +8391,7 @@ var _user$project$Main$view = function (model) {
 									{
 										ctor: '::',
 										_0: _elm_lang$html$Html$text(
-											_elm_lang$core$Basics$toString(model.plusMinus)),
+											_elm_lang$core$Basics$toString(head.plusMinus)),
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -8388,7 +8413,7 @@ var _user$project$Main$view = function (model) {
 										{
 											ctor: '::',
 											_0: _elm_lang$html$Html$text(
-												_elm_lang$core$Basics$toString(model.them)),
+												_elm_lang$core$Basics$toString(head.them)),
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
@@ -8434,7 +8459,7 @@ var _user$project$Main$view = function (model) {
 									_elm_lang$html$Html$span,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-menu-up'),
+										_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-menu-left'),
 										_1: {
 											ctor: '::',
 											_0: _user$project$Main$ariaHidden,
@@ -8472,7 +8497,7 @@ var _user$project$Main$view = function (model) {
 										_elm_lang$html$Html$span,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-triangle-top'),
+											_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-triangle-left'),
 											_1: {
 												ctor: '::',
 												_0: _user$project$Main$ariaHidden,
@@ -8491,13 +8516,13 @@ var _user$project$Main$view = function (model) {
 										_0: _elm_lang$html$Html_Attributes$class('btn btn-default'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Reset),
+											_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Undo),
 											_1: {
 												ctor: '::',
-												_0: _user$project$Main$ariaLabel('Reset'),
+												_0: _user$project$Main$ariaLabel('Undo'),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$title('Reset'),
+													_0: _elm_lang$html$Html_Attributes$title('Undo'),
 													_1: {ctor: '[]'}
 												}
 											}
@@ -8509,7 +8534,7 @@ var _user$project$Main$view = function (model) {
 											_elm_lang$html$Html$span,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-repeat'),
+												_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-repeat icon-flipped'),
 												_1: {
 													ctor: '::',
 													_0: _user$project$Main$ariaHidden,
@@ -8547,7 +8572,7 @@ var _user$project$Main$view = function (model) {
 												_elm_lang$html$Html$span,
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-triangle-bottom'),
+													_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-triangle-right'),
 													_1: {
 														ctor: '::',
 														_0: _user$project$Main$ariaHidden,
@@ -8585,7 +8610,7 @@ var _user$project$Main$view = function (model) {
 													_elm_lang$html$Html$span,
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-menu-down'),
+														_0: _elm_lang$html$Html_Attributes$class('glyphicon glyphicon-menu-right'),
 														_1: {ctor: '[]'}
 													},
 													{ctor: '[]'}),
@@ -8603,7 +8628,7 @@ var _user$project$Main$view = function (model) {
 };
 var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
 	{
-		model: A3(_user$project$Main$Model, 0, 0, 0),
+		model: {ctor: '[]'},
 		update: _user$project$Main$update,
 		view: _user$project$Main$view
 	})();
